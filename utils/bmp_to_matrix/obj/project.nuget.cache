@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "cJTX5AhEF5N9obJJYP1g5A4WPMUD114IU30W9fMEsmVG07/VRegVRLFKwzvaisUjI6FesE6YOUlebOyiPAyydQ==",
+  "success": true,
+  "projectFilePath": "D:\\REPOS\\ledCube_8_16\\utils\\bmp_to_matrix\\bmp_to_matrix.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Alex\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Alex\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
