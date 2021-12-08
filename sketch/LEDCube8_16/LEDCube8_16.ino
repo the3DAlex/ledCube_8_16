@@ -100,7 +100,6 @@ void sentData()
     if (zCount >= SIZEz)zCount = 0;
 }
 
-
 //==============================================================================
 ISR(TIMER2_COMPA_vect)
 {
@@ -250,8 +249,8 @@ void stars()
       {
          setPixel(random(0, SIZEx), random(0, SIZEy), random(0, SIZEz));
       }
-      counter=0;
-  }else  counter++;
+      counter = 0;
+  }else  counter ++;
 }
 
 //==============================================================================
@@ -264,8 +263,8 @@ void starsInv()
       {
          setPixel(random(0, SIZEx), random(0, SIZEy), random(0, SIZEz), 0);
       }
-      counter=0;
-  }else  counter++;
+      counter = 0;
+  }else  counter ++;
 }
 
 //==============================================================================
