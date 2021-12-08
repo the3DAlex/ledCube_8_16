@@ -108,9 +108,9 @@ ISR(TIMER2_COMPA_vect)
 }
 
 //==============================================================================
-void setPixel(uint8_t x, uint8_t y, uint8_t z)
+void setPixel(uint8_t x, uint8_t y, uint8_t z, uint8_t val = 1)
 {
-  if (x >= 0 && x < SIZEx && y >= 0 && y < SIZEy && z >= 0 && z < SIZEz)   matrix[x][y][z] = 1;
+  if (x >= 0 && x < SIZEx && y >= 0 && y < SIZEy && z >= 0 && z < SIZEz)   matrix[x][y][z] = val;
 }
 
 //==============================================================================
@@ -262,7 +262,7 @@ void starsInv()
       fillMatrix(1);
       for (uint8_t i = 0; i < 20; i++) //20 stars 
       {
-         setPixel(random(0, SIZEx), random(0, SIZEy), random(0, SIZEz));
+         setPixel(random(0, SIZEx), random(0, SIZEy), random(0, SIZEz), 0);
       }
       counter=0;
   }else  counter++;
