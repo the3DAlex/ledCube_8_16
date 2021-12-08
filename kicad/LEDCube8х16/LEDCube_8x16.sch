@@ -1,33 +1,95 @@
 EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
+LIBS:74xgxx
 LIBS:74xx
-LIBS:cmos4000
+LIBS:ac-dc
+LIBS:actel
 LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
+LIBS:allegro
+LIBS:Altera
+LIBS:analog_devices
 LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
 LIBS:atmel
+LIBS:audio
+LIBS:battery_management
+LIBS:bbd
+LIBS:bosch
+LIBS:brooktre
+LIBS:cmos_ieee
+LIBS:cmos4000
+LIBS:conn
 LIBS:contrib
+LIBS:cypress
+LIBS:dc-dc
+LIBS:device
+LIBS:digital-audio
+LIBS:diode
+LIBS:display
+LIBS:dsp
+LIBS:elec-unifil
+LIBS:ESD_Protection
+LIBS:ftdi
+LIBS:gennum
+LIBS:graphic
+LIBS:hc11
+LIBS:intel
+LIBS:interface
+LIBS:ir
+LIBS:Lattice
+LIBS:leds
+LIBS:linear
+LIBS:logo
+LIBS:maxim
+LIBS:mechanical
+LIBS:memory
+LIBS:microchip
+LIBS:microchip_dspic33dsc
+LIBS:microchip_pic10mcu
+LIBS:microchip_pic12mcu
+LIBS:microchip_pic16mcu
+LIBS:microchip_pic18mcu
+LIBS:microchip_pic24mcu
+LIBS:microchip_pic32mcu
+LIBS:microcontrollers
+LIBS:modules
+LIBS:motor_drivers
+LIBS:motorola
+LIBS:motors
+LIBS:msp430
+LIBS:nordicsemi
+LIBS:nxp
+LIBS:nxp_armmcu
+LIBS:onsemi
+LIBS:opto
+LIBS:Oscillators
+LIBS:philips
+LIBS:power
+LIBS:Power_Management
+LIBS:powerint
+LIBS:pspice
+LIBS:references
+LIBS:regul
+LIBS:relays
+LIBS:rfcom
+LIBS:sensors
+LIBS:silabs
+LIBS:siliconi
+LIBS:stm8
+LIBS:stm32
+LIBS:supertex
+LIBS:switches
+LIBS:texas
+LIBS:transf
+LIBS:transistors
+LIBS:triac_thyristor
+LIBS:ttl_ieee
 LIBS:valves
+LIBS:video
+LIBS:wiznet
+LIBS:Worldsemi
+LIBS:Xicor
+LIBS:xilinx
+LIBS:zetex
+LIBS:Zilog
 LIBS:MY
 LIBS:LEDCube_8x16-cache
 EELAYER 25 0
@@ -984,7 +1046,7 @@ Wire Wire Line
 Wire Wire Line
 	2450 4500 2150 4500
 Wire Wire Line
-	1750 6600 3400 6600
+	1750 6600 3600 6600
 Connection ~ 3400 6600
 Wire Wire Line
 	3050 8450 3050 8700
@@ -1575,4 +1637,30 @@ Wire Wire Line
 	15100 1800 15100 2150
 Wire Wire Line
 	15100 5450 15100 2450
+$Comp
+L CP C4
+U 1 1 61B07822
+P 3750 6600
+F 0 "C4" H 3775 6700 50  0000 L CNN
+F 1 "4400 mkf x 6.3 v" H 3775 6500 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_D18.0mm_P7.50mm" H 3788 6450 50  0001 C CNN
+F 3 "" H 3750 6600 50  0001 C CNN
+	1    3750 6600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR014
+U 1 1 61B07A42
+P 4100 6700
+F 0 "#PWR014" H 4100 6450 50  0001 C CNN
+F 1 "GND" H 4100 6550 50  0000 C CNN
+F 2 "" H 4100 6700 50  0001 C CNN
+F 3 "" H 4100 6700 50  0001 C CNN
+	1    4100 6700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 6600 4100 6600
+Wire Wire Line
+	4100 6600 4100 6700
 $EndSCHEMATC
