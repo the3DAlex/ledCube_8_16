@@ -23,8 +23,8 @@ irSmallD_t irData;
 byte matrix[8][8][16];
 
 uint8_t zCount = 0;
-uint8_t mode = 1; // 0 - leds off; 1 - all leds on; 2 - rain; 3 - stars; 4 - starsInv(); 5 - uppRain(); 6 - movingDot(); 7 - salute();
-uint8_t modesCount = 8;
+uint8_t mode = 1; // 0 - leds off; etc
+uint8_t modesCount = 9;
 uint8_t saluteCadr = 0;
 uint8_t saluteX ,saluteY = 4;
 
@@ -214,6 +214,104 @@ void rain()
 }
 
 //==============================================================================
+void rainWithCenter()
+{
+   if (counter > 100) // counter for delay simulation
+      {
+          // process center -----------------------------
+          for(int8_t z = 0; z < SIZEzLIM; z ++)
+          {
+              for (int8_t x = 2; x < SIZEx - 2; x ++)
+              {
+                  for (int8_t y = 2; y < SIZEy - 2; y ++)
+                  {
+                      matrix[x][y][z] = matrix[x][y][z + 1];
+                      matrix[x][y][z + 1] = 0;
+                  }
+              }
+          }
+          // spawn 3 new dot at top
+          for (uint8_t i = 0; i < 3; i++)  setPixel(random(2, SIZEx - 2), random(2, SIZEy - 2), SIZEzLIM);
+
+          // process borders -----------------------------
+          for(int8_t z = SIZEzLIM; z > 0; z --)
+          {
+              for (int8_t x = 0; x < SIZEx ; x ++)
+              {
+                  for (int8_t y = 0; y < SIZEy ; y ++)
+                  {
+                      if (x < 2 || x > SIZExLIM - 2 || y < 2 || y > SIZEyLIM - 2)
+                      {
+                          matrix[x][y][z] = matrix[x][y][z - 1];
+                          matrix[x][y][z - 1] = 0;
+                      }
+                  }
+              }
+          }
+          // spawn 3 new dot at top
+          setPixel(random(SIZEx - 2, SIZEx), random(0, SIZEy), 0);
+          setPixel(random(0, 2), random(0, SIZEy), 0);
+          setPixel(random(0, SIZEx), random(0, 2), 0);
+          setPixel(random(0, SIZEx), random(SIZEy - 2, SIZEy), 0);
+
+          counter=0;
+      }else
+      {
+        counter++;
+      }
+}
+
+//==============================================================================
+void rainWithCenterInverted()
+{
+   if (counter > 100) // counter for delay simulation
+      {
+          // process center -----------------------------
+          for(int8_t z = SIZEzLIM; z > 0; z --)
+          {
+              for (int8_t x = 2; x < SIZEx - 2; x ++)
+              {
+                  for (int8_t y = 2; y < SIZEy - 2; y ++)
+                  {
+                      matrix[x][y][z] = matrix[x][y][z - 1];
+                      matrix[x][y][z - 1] = 0;
+                  }
+              }
+          }
+          // spawn 3 new dot at top
+          for (uint8_t i = 0; i < 3; i++)  setPixel(random(2, SIZEx - 2), random(2, SIZEy - 2), 0);
+
+          // process borders -----------------------------
+          
+          for(int8_t z = 0; z < SIZEzLIM; z ++)
+          {
+              for (int8_t x = 0; x < SIZEx ; x ++)
+              {
+                  for (int8_t y = 0; y < SIZEy ; y ++)
+                  {
+                      if (x < 2 || x > SIZExLIM - 2 || y < 2 || y > SIZEyLIM - 2)
+                      {
+                          matrix[x][y][z] = matrix[x][y][z + 1];
+                          matrix[x][y][z + 1] = 0;
+                      }
+                  }
+              }
+          }
+          // spawn 3 new dot at top
+          setPixel(random(SIZEx - 2, SIZEx), random(0, SIZEy), SIZEzLIM);
+          setPixel(random(0, 2), random(0, SIZEy), SIZEzLIM);
+          setPixel(random(0, SIZEx), random(0, 2), SIZEzLIM);
+          setPixel(random(0, SIZEx), random(SIZEy - 2, SIZEy), SIZEzLIM);
+
+          counter=0;
+      }else
+      {
+        counter++;
+      }
+}
+
+
+//==============================================================================
 void uppRain()
 {
    if (counter > 100) // counter for delay simulation
@@ -352,16 +450,19 @@ void processMode()
           stars();
         break;
         case 4:
-          starsInv();
+          rainWithCenter();
         break;
         case 5:
-          uppRain();
+          starsInv();
         break;
         case 6:
-          movingDot();
+          uppRain();
         break;
         case 7:
-          salute();
+          stars();
+        break;
+        case 8:
+          rainWithCenterInverted();
         break;
       }
 }
@@ -432,6 +533,10 @@ void loop()
         break;
         case 0x1C:
           mode = 7;
+          rightButtonPressed = true;
+        break;
+        case 0x4:
+          mode = 8;
           rightButtonPressed = true;
         break;
         case 0x19:
